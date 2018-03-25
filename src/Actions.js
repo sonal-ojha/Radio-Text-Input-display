@@ -9,7 +9,7 @@ export const showSelectedUser=(value) =>{
 }
 
 export const UserEnteredText=(list)=>{
-    console.log('actions- user',list);
+    console.log('actions- user: checking',list);
     return(
         {
             type:"USER_ENTERED_TEXT",

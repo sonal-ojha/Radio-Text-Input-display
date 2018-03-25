@@ -13,6 +13,7 @@ class TextApp extends React.Component{
         this.selectionMade=this.selectionMade.bind(this);
         this.handleUserSelection=this.handleUserSelection.bind(this); 
         this.AddUserText=this.AddUserText.bind(this);
+        this.handleInputText=this.handleInputText.bind(this);
     }
 
     selectionMade(e){
@@ -32,8 +33,8 @@ class TextApp extends React.Component{
     AddUserText(e){
         e.preventDefault();
         if(this.state.inputText){
-            console.log('dispatch:add user text',this.state.inputText)
-            this.props.dispatch(UserEnteredText(this.state.inputText))
+            console.log('dispatch:add user text: checking option',this.state)
+            this.props.dispatch(UserEnteredText(this.state))
         }
         this.setState({
             ...this.state, inputText: ""
@@ -76,7 +77,7 @@ class TextApp extends React.Component{
 
 const mapStateToProps=(state)=>{
     console.log('mapstateToProps',state)
-    return state;
+    return state.Selectedreducer;
 }
 
 export default connect(mapStateToProps)(TextApp); 

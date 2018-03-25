@@ -8,12 +8,16 @@ export const Selectedreducer=(state={value:"vilva"},action)=>{
             return state;
     }
 }
-export const Textreducer=(state={userText:["abcd","efgh"]},action)=>{
+export const Textreducer=(state={usertext:["abcd"]},action)=>{
     console.log('text reducer',action);
     switch(action.type){
         case "USER_ENTERED_TEXT":
-            console.log('case text reduser',action.text);
-            return Object.assign({},state,state.userText.push(action.userText));
+            console.log('case text reduser',action.usertext);
+            var newArray=state.usertext;
+            /* Need to append the SelectedUser value along with the text */
+
+            newArray.push(action.usertext);
+            return Object.assign({},state,{usertext:newArray});
         default:
             return state;
     }
