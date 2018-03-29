@@ -4,11 +4,16 @@ import { connect } from "react-redux";
 class DisplayText extends React.Component{
     render(){
         console.log('display text component');
-        const list = this.props.Textreducer.usertext.map((e,i)=>{
+        function getText(item,index){
+            var text1=[item.value,item.text].join("-");
+            return text1;
+        }
+        const list = this.props.Textreducer.map(getText);
+        /*const list = this.props.Textreducer.usertext.map((e,i)=>{
             return (
                 <li key={i}>{e}-{this.props.Selectedreducer.value}</li>
             )
-        });
+        });*/
         return(
             <div>
                 <h3> * User Entered Text * </h3> 

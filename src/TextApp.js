@@ -17,10 +17,17 @@ class TextApp extends React.Component{
     }
 
     selectionMade(e){
-        console.log('In selection made',e.target.value);
-        this.props.dispatch(showSelectedUser(e.target.value))
+        this.setState(
+            {   
+                selectedUser:e.target.value                
+            }
+        )   
+        console.log('set state:',this.state.selectedUser);   
+        console.log('In selection made',e.target.value,this.state);
+        this.props.dispatch(showSelectedUser(this.state))
+        //this.props.dispatch(showSelectedUser(e.target.value))
     }
-
+ 
     handleUserSelection(e){
         console.log('on change',e.target.checked);
         this.setState(
@@ -29,6 +36,7 @@ class TextApp extends React.Component{
             }
         )        
     }
+    
 
     AddUserText(e){
         e.preventDefault();
@@ -44,7 +52,7 @@ class TextApp extends React.Component{
     /* User entered text */
     handleInputText(e){
         /*e.preventDefault();*/
-        console.log(e.target.value);
+        console.log('handle input text : ',e.target.value);
         this.setState({
             inputText:e.target.value
         })
@@ -63,7 +71,7 @@ class TextApp extends React.Component{
                         onClick={this.selectionMade} onChange={this.handleUserSelection}/>
                 Sonu
             </label> 
-            <p> Selected option is : {this.props.value}</p>
+            <p> Selected option is : {this.state.selectedUser  }</p>
             <div>
                 <input type="text" name="txtUser" placeholder="enter text here" value={this.state.inputText}
                      onChange={this.handleInputText}/>
@@ -76,8 +84,8 @@ class TextApp extends React.Component{
 }
 
 const mapStateToProps=(state)=>{
-    console.log('mapstateToProps',state)
-    return state.Selectedreducer;
+    console.log('mapstateToProps-text',state)
+    return state;
 }
 
 export default connect(mapStateToProps)(TextApp); 
