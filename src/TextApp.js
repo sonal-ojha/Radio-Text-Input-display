@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {showSelectedUser,UserEnteredText} from './Actions';
+import {showSelectedUser,UserEnteredText, ThunkActionCreator} from './Actions';
 
 class TextApp extends React.Component{
     constructor(props){
@@ -14,6 +14,7 @@ class TextApp extends React.Component{
         this.handleUserSelection=this.handleUserSelection.bind(this); 
         this.AddUserText=this.AddUserText.bind(this);
         this.handleInputText=this.handleInputText.bind(this);
+        this.thunkA=this.thunkA.bind(this);
     }
 
     selectionMade(e){
@@ -58,6 +59,11 @@ class TextApp extends React.Component{
         })
     }
 
+    thunkA(e){
+        e.preventDefault();
+        this.props.dispatch(ThunkActionCreator());
+    }
+
     render(){
         return(
             <div>
@@ -72,6 +78,13 @@ class TextApp extends React.Component{
                 Sonu
             </label> 
             <p> Selected option is : {this.state.selectedUser  }</p>
+            <button onClick={this.thunkA}>Click</button>
+            <p> status :{this.props.thunkReducer.STATUS} </p>
+            <div>
+                <ul>
+                    <li>status response: </li>
+                </ul>
+            </div>
             <div>
                 <input type="text" name="txtUser" placeholder="enter text here" value={this.state.inputText}
                      onChange={this.handleInputText}/>

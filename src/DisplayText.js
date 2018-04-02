@@ -14,12 +14,24 @@ class DisplayText extends React.Component{
                 <li key={i}>{e}-{this.props.Selectedreducer.value}</li>
             )
         });*/
+
+        // compute success returned API call output
+        function getAPIResponse(item,index){
+            var responseAPI=[item.name,item.phone].join("--");
+            return <li> {responseAPI} </li>
+        }
+       //const APIOutput=this.props.ThunkReducer.text1.map(getAPIResponse)
+
         return(
             <div>
                 <h3> * User Entered Text * </h3> 
                 <ul>  
                     {list}
                 </ul>
+                <ol>
+                    <li> Response</li>
+
+                </ol>   
             </div>           
 
         )

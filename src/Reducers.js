@@ -5,13 +5,49 @@ const initialState={
     }]
 }
 
+const state1={
+    STATUS:"",
+   text1:[{
+            status:"",
+            name:"",
+            emailID:"",
+            PhNo:"",
+            type:"",
+            lat:"",
+            lan:""
+       }] 
+}
+
+export const thunkReducer=(state=state1,action)=>{
+    switch(action.type){
+        case "SUCCESS":  
+            for (var i=0;i<action.text1.length;i++){
+                var newArr1=state.text1
+                var newObj1={
+                    status:action.type,
+                    name:action.text1[i].name,
+                    emailID:action.text1[i].email,
+                    PhNo:action.text1[i].phone,
+                    type:action.text1[i].type,
+                    lan:action.text1[i].lan,
+                    lat:action.text1[i].lat
+                }
+                newArr1.push(newObj1);
+            }
+            return Object.assign({},state,{text1:newArr1,STATUS:action.type})
+        case "FAIL":
+            return Object.assign({},state,{STATUS:action.type})
+        case "START":
+            return Object.assign({},state,{STATUS:action.type})
+        default:
+            return state;
+    }
+
+}
 export const Selectedreducer=(state=initialState,action)=>{
-    console.log('selected reducer - state',action," -", state);
     switch(action.type){
         case "SELECTED_USER":
             console.log('case selected user',action.text);
-            //var newArr=state;
-            // set state
             return Object.assign({},state,{value:action.text});
         default:
             return state;
